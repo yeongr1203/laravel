@@ -32,16 +32,36 @@ class BoardController extends Controller
         return redirect('/boards'); // 리다이렉트(이동됨)
     }
 
-    //
-    public function show(Request $req) {        // 
+    // 
+    public function show(Request $req) {      
         $id = $req->input('id');
+        $board = Board::find($id);
+        $board->hits++;
+        $board->save();
         return view('board/show')->with('data',Board::findOrFail($id));
+    }
+
+    // 수정
+    public function edit(Request $req) {
+        $id = $req->input('id');
+        return view('board/create')->with("data", Board::findOrFail($id));
+    }
+    
+    public function update(Request $req) {
+        $id = $req->input('id');
+        $board = Board::findOrFail($id);
+        $board->title = $req->input('title');
+        $board->ctnt = $req->input('ctnt');
+        $board->save();
+        return redirect()->route('boards.show', ["id" => $id]);
     }
 
     // 삭제
     public function destroy(Request $req) {
-        $id = $req->input('id');
+        $id = $req->input('id'); 
         Board::find($id)->delete();
         return redirect('/boards');
     }
+
+
 }

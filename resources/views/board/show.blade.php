@@ -11,7 +11,7 @@
     <div id="ldata" data-id="{{ $data->id }}"></div>
     <div>
         <a href="{{ url('/boards')}}"><button type="button">홈</button></a>
-        <a href=""><button type="button">수정</button></a>
+        <a href="{{ route('boards.edit', ["id" => $data->id]) }}"><button type="button">수정</button></a>
         <button type="button" id="btnDel">삭제</button>
     </div>
     <div>제목 : {{ $data->title }}</div>

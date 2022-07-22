@@ -42,12 +42,12 @@ Route::prefix('boards')->group(function(){
         -> name('boards.show');
         
     //수정        
-    Route::get('edit',[BoardController::class,'edit'])
-        -> name('boards.edit');
+    Route::get('edit', [BoardController::class, 'edit'])
+        ->name('boards.edit');
     
     // ??
-    Route::post('update',[BoardController::class,'update'])
-        -> name('boards.update');
+    Route::post('update', [BoardController::class, 'update'])
+        ->name('boards.update');
     
     // destroy = 삭제
     Route::get('destroy', [BoardController::class, 'destroy']);
